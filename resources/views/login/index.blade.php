@@ -1,55 +1,38 @@
 @extends('layouts.auth')
 
-@section('page.title', 'Авторизация')
+@section('page.title', config('app.name') . '. Страница входа')
 
 @section('auth.content')
+    <x-auth-forms.card-form>
+        <x-auth-forms.header>
+            <x-auth-forms.title>
+                {{ __('Вход') }}
+            </x-auth-forms.title>
+        </x-auth-forms.header>
 
-    <div class="card mb-3 ">
+        <x-auth-forms.body>
+            <x-auth-forms.form action="{{ route('login.store') }}">
+                <x-auth-forms.form-item>
+                    <x-auth-forms.label>{{ __('Почта') }}</x-auth-forms.label>
+                    <x-auth-forms.input type="email" name="email" value="{{ old('email') }}" autofocus/>
+                    <x-error name="email" />
+                </x-auth-forms.form-item>
 
-        {{--header form--}}
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h4 class="m-0">
-                    {{ __('Вход') }}
-                </h4>
-            </div>
-        </div>
-        {{--end header form--}}
+                <x-auth-forms.form-item>
+                    <x-auth-forms.label>{{ __('Пароль') }}</x-auth-forms.label>
+                    <x-auth-forms.input type="password" name="pass"/>
+                    <x-error name="pass" />
+                </x-auth-forms.form-item>
 
-        {{--action form--}}
-        <div class="card-body">
-            <form action="{{ route('login.store') }}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label class="mb-2 required">
-                        {{ __('Email') }}
-                    </label>
-                    <input type="email" name="email" class="form-control" autofocus>
-                </div>
+                <x-checkbox name="remember">
+                    {{ __('Запомнить меня') }}
+                </x-checkbox>
 
-                <div class="mb-3">
-                    <label class="mb-2 required">
-                        {{ __('Password') }}
-                    </label>
-                    <input type="password" name="password" class="form-control">
-                </div>
-
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                        <label class="form-check-label" for="remember">
-                            {{ __('Запомнить') }}
-                        </label>
-                    </div>
-                </div>
-
-                <button class="btn btn-dark" type="submit">
+                <x-auth-forms.button type="submit" color="dark">
                     {{ __('Войти') }}
-                </button>
-            </form>
-        </div>
-        {{--end action form--}}
-
-    </div>
+                </x-auth-forms.button>
+            </x-auth-forms.form>
+        </x-auth-forms.body>
+    </x-auth-forms.card-form>
 
 @endsection

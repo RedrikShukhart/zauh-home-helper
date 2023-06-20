@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //таким образом можно организовать шаринг данных между разными шаблонами и контроллерами
+        //расшариваем данные для меню 'includes.menu-left',
+        View::composer('components.menu-categories-left', function ($view) {
+            $cats = getMenuCategories();
+            $categories = formTreeCategories($cats);
+
+            $view->with('categories', $categories); 
+        });
+
+
+        Schema::defaultStringLength(191);
+
         View::share('date', date('Y'));
     }
 }
