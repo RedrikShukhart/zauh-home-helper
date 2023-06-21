@@ -9,6 +9,6 @@
     </x-title>
 
 
-    <x-lists.table-list />
+    <x-lists.table-list :content="$content" />
     
 @endsection

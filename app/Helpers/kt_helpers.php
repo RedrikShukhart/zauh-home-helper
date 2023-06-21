@@ -23,6 +23,38 @@ if (!function_exists('activeLink')) {
     }
 }
 
+if (!function_exists('alert')) {
+    /**
+     * Set text alert notifications and notification color
+     * 
+     * @param string $text Messege to show
+     * @param string $type Messege type: S - sucsess, D - danger, I - info
+     * 
+     * @return void
+     */
+    function alert(string $text, string $type): void
+    {
+        session(['alert' => __($text)]);
+
+        $alertColor = '';
+        $type = strtoupper($type);
+
+        switch($type) {
+            case 'S': 
+                $alertColor = 'success';
+                break;
+            case 'D': 
+                $alertColor = 'danger';
+                break;
+            case 'I': 
+                $alertColor = 'info';
+                break;
+        }
+
+        session(['alertColor' => $alertColor]);
+    }
+}
+
 if (!function_exists('getMenuCategories')) {
     /**
      * Получение списка категорий для построения меню
@@ -53,7 +85,8 @@ if (!function_exists('getMenuCategories')) {
                      'zh_views.id AS view_id',
                      'zh_views.folder_name'
                     )
-        ->get();
+            ->where('user_id', $userId)
+            ->get();
 
         return $categories;
     }
@@ -105,14 +138,13 @@ if (!function_exists('makeTreeCategories')) {
 
 if (!function_exists('getUpdateData')) {
     /**
-     * Отсеивание, какие данные нужны для обновления в запросе
-     * @param array validatedData Массив данных после валидации
+     * Filtering out what data need to update in the query
+     * @param array validatedData Data get after validate
      * 
      * @return array
      */
     function getUpdateData(array $validatedData): array
     {
-        # code...
         $resultData = [];
 
         $fields = [
@@ -127,6 +159,9 @@ if (!function_exists('getUpdateData')) {
             'description',
             'sourse_link',
             'status',
+            'title',
+            'short_description',
+            'description',
         ];
 
         foreach ($validatedData as $key => $value) {
@@ -134,38 +169,16 @@ if (!function_exists('getUpdateData')) {
                 $resultData[$key] = $value;
             }
         }
+
         return $resultData;
     }
 }
 
-if (!function_exists('alert')) {
-    /**
-     * Set text alert notifications and notification color
-     * 
-     * @param string $text Messege to show
-     * @param string $type Messege type: S - sucsess, D - danger, I - info
-     * 
-     * @return void
-     */
-    function alert(string $text, string $type): void
-    {
-        session(['alert' => __($text)]);
+// if (!function_exists('getCardContent')) {
 
-        $alertColor = '';
-        $type = strtoupper($type);
+//     function getCardContent($tableName)
+//     {
+//         $userId = 1;
 
-        switch($type) {
-            case 'S': 
-                $alertColor = 'success';
-                break;
-            case 'D': 
-                $alertColor = 'danger';
-                break;
-            case 'I': 
-                $alertColor = 'info';
-                break;
-        }
-
-        session(['alertColor' => $alertColor]);
-    }
-}
+//     }
+// }

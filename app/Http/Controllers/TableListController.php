@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Zh_cards;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Zh_helpers\TableContent\TableContent;
 
 class TableListController extends Controller
 {
     public function index($tableName)
     {
-
         //по переменной tableName узнаем, какую именно категорию мы получили и нам надо показать
         // по ней находим запись в БД function какой-то нужен
         // получяаем данные из БД 
-        return view('table-list.index');
+        $table = new TableContent();
+        $content = $table->getAllContent($tableName);
+        
+        return view('table-list.index', compact('content'));
     }
     
     public function create()
@@ -23,27 +26,26 @@ class TableListController extends Controller
 
     public function edit($tableName, $id)
     {
-        $text = "Страница изменения карточки  $tableName, $id";
+        $table = new TableContent();
+        $content = $table->getContent($id);
 
-        $userId = 1;
-        $tableData = Zh_cards::query()
-            ->where('user_id', $userId)
-            ->findOrFail($id,
-                [
-                    'id',
-                    'title',
-                    'description',
-                ]);
-
-        return view('table-list.edit', compact('tableData', 'id'));
+        return view('table-list.edit', compact('content', 'id'));
     }
 
-    public function update(Request $request, $tableName, $id)
+    public function update(Request $request,  $id)
     {
-        // dd($tableName);
-        alert("Сохранено $tableName , $id", 'S');
+        $validatetContent = $request->validate([
+            'title' => ['required', 'string', 'max:128'],
+            'id' => ['required', Rule::exists('zh_cards', 'id')],
+            'short_description' => ['required', 'string']            
+        ]);
+
+        $dataToUpdate = getUpdateData($validatetContent);
+
+        $content = new TableContent();
+        $content->updateContent($id, $dataToUpdate);
+
         return redirect()->back();
-        // return "Запрос изменения карточки $tableName , $id";
     }
 
     public function delete($tableName, Request $request)

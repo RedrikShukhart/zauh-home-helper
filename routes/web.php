@@ -67,7 +67,7 @@ Route::get('album/{albumName}', [AlbumController::class, 'index'])->name('album'
 Route::get('table/{tableName}', [TableListController::class, 'index'])->name('table-list');
 Route::get('table/{tableName}/create', [TableListController::class, 'create'])->name('table-list.create');
 Route::get('table/{tableName}/{id}/edit', [TableListController::class, 'edit'])->name('table-list.edit');
-Route::put('table/{tableName}/{id}', [TableListController::class, 'update'])->name('table-list.update');
+Route::put('table/{id}', [TableListController::class, 'update'])->name('table-list.update');
 Route::delete('table/{tableName}', [TableListController::class, 'delete'])->name('table-list.delete');
 
 

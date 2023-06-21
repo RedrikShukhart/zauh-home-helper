@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('zh_cards', function (Blueprint $table) {
             $table->id();
 
-            // $table->bigInteger('user_id')->unsigned();
-            // $table->foreign('user_id')->references('user_id')->on('zh_users')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('zh_users')->cascadeOnDelete();
 
             // $table->bigInteger('card_type_id')->unsigned();
@@ -24,7 +22,7 @@ return new class extends Migration
 
             $table->string('title', 128);
             $table->string('short_description')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('sourse_link')->nullable();
 
             $table->char('status', 1)->default('A');

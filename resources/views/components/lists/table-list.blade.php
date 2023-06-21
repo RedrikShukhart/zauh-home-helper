@@ -9,18 +9,18 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <?php for($i = 1; $i <= 8; $i++): ?>
+
+      @foreach ($content as $item)
         <tr>
-          <th scope="row"><?= $i ?></th>
-          <td>Some product name, what we need to cook for example...</td>
-          <td>6 minutes / ours / etc</td>
+          <th scope="row">{{ $item->id }}</th>
+          <td>{{ $item->title }}</td>
+          <td>{{ $item->short_description }}</td>
           <td>
-            <i> {{-- удалить элемент --}}
-                {{-- @php(dump(route('table-list.delete', 'time-cook', ['id' => 1]))) --}}
-                <a class="bi bi-trash3 text-muted" href="{{ route('table-list.delete', 'time-cook', ['id' => 1]) }}"></a>
+            <i>{{-- удалить элемент --}}
+                <a class="bi bi-trash3 text-muted" href="{{ route('table-list.delete', 'time-cook', ['id' => $item->id]) }}"></a>
             </i>
             <i>{{-- редактировать элемент --}}
-                <a class="bi bi-pencil-square text-muted" href="{{ route('table-list.edit', ['time-cook', '1']) }}"></a>
+                <a class="bi bi-pencil-square text-muted" href="{{ route('table-list.edit', ['time-cook', $item->id]) }}"></a>
             </i>
   
             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -35,7 +35,7 @@
   
           </td>
         </tr>
-    <?php endfor; ?>
+      @endforeach
    </tbody>
   </table>
 </div>

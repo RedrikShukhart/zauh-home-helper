@@ -46,12 +46,10 @@ class ProfileController extends Controller
             
         ]);
 
-        // if ($validatedUserData) {
-            // Отсеивание, какие данные нужны для обновления в запросе
+        // Отсеивание, какие данные нужны для обновления в запросе
         $dataToUpdate = getUpdateData($validatedUserData);
         // }
-        // dd($request);
-        // dd($validatedUserData);
+
         // вопрос с тем, как заполнять поля для обновления, чтобы не перезаписывать всё
         $user->update($dataToUpdate);
 
