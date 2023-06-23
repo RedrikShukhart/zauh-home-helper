@@ -51,8 +51,8 @@ Route::view('shop-list', 'shop-list.index')->name('shop-list');
 
 //Страницы связанные с показом карточек рецептов
 Route::get('cards/{card}', [CadrController::class, 'index'])->name('cards');
-Route::get('cards/{card}/create', [CadrController::class, 'create'])->name('cards.create');
 Route::get('cards/{card}/{id}', [CadrController::class, 'show'])->name('cards.show');
+Route::get('cards/{card}/create', [CadrController::class, 'create'])->name('cards.create');
 Route::post('cards/{card}', [CadrController::class, 'store'])->name('cards.store');
 Route::get('cards/{card}/edit', [CadrController::class, 'edit'])->name('cards.edit');
 Route::put('cards/{card}/{id}', [CadrController::class, 'update'])->name('cards.update');
@@ -66,9 +66,10 @@ Route::get('album/{albumName}', [AlbumController::class, 'index'])->name('album'
 //Страницы связанные с показом шаблона список-таблица
 Route::get('table/{tableName}', [TableListController::class, 'index'])->name('table-list');
 Route::get('table/{tableName}/create', [TableListController::class, 'create'])->name('table-list.create');
+Route::post('table/{tableName}', [TableListController::class, 'store'])->name('table-list.store');
 Route::get('table/{tableName}/{id}/edit', [TableListController::class, 'edit'])->name('table-list.edit');
-Route::put('table/{id}', [TableListController::class, 'update'])->name('table-list.update');
-Route::delete('table/{tableName}', [TableListController::class, 'delete'])->name('table-list.delete');
+Route::put('table/{id}', [TableListController::class, 'update'])->name('table-list.update')->whereNumber('id');
+Route::delete('table/{id}', [TableListController::class, 'delete'])->name('table-list.delete')->whereNumber('id');
 
 
 //Страницы связанные с показом шаблона список-ссылки

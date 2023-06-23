@@ -6,6 +6,8 @@ use App\Models\Zh_views;
 use App\Models\Zh_categories;
 use App\Models\Zh_category_views;
 use App\Models\Zh_cards;
+use App\Models\Zh_views_values;
+use App\Models\Zh_views_values_variants;
 
 
 use Illuminate\Http\Request;
@@ -220,6 +222,92 @@ class TestController extends Controller
 
         echo 'ok';
 
+// заполнение типов вью BEGIN
+        // Zh_views_values::query()->create([
+        //     'view_id' => 4,
+        //     'view_var' => 'title',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 4,
+        //     'view_var' => 'description',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 2,
+        //     'view_var' => 'features',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 2,
+        //     'view_var' => 'feature_name',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 2,
+        //     'view_var' => 'feature_amount',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 2,
+        //     'view_var' => 'description',
+        // ]);
+
+// заполнение типов вью END
+
+        // Zh_views_values_variants::query()->create([
+        //     'user_id' => 1,
+        //     'view_var_id' => 1,
+        //     'var_variant' => 'наименование продукта',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 1,
+        //         'var_variant' => 'время приготовления',
+        //     ]);
+
+        // Zh_views_values_variants::query()->create([
+        //     'user_id' => 1,
+        //     'view_var_id' => 1,
+        //     'view_category_id' => 8,
+        //     'var_variant' => 'Наименование продукта',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 2,
+        //         'view_category_id' => 8,
+        //         'var_variant' => 'Пропорции',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 1,
+        //         'view_category_id' => 10,
+        //         'var_variant' => 'Наименование',
+        // ]);
+    
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 2,
+        //         'view_category_id' => 10,
+        //         'var_variant' => 'Габариты - Размеры',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        // 'user_id' => 1,
+        // 'view_var_id' => 1,
+        // 'view_category_id' => 11,
+        // 'var_variant' => 'Наименование',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 2,
+        //         'view_category_id' => 11,
+        //         'var_variant' => 'Габариты - Размеры',
+        // ]);
 
         // return 'test';
     }

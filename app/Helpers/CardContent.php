@@ -6,35 +6,29 @@ use Illuminate\Support\Facades\DB;
 
 interface CardContent
 {
+    /**
+     * Get all short content data for a common page
+     */
+    public function getAllContent($categoryName, $userId);
 
-    //нужны методы: определения, - какой именно тип карточки нам поступил,
-    // - методы получения данных для каждого типа карточки
-    // - метод выдающий итоговые данные для общих страниц
-    // - веротно метод выдающий итоговые данные для каждой карточки
-/**
- * Get all short content data for a common page
- */
-public function getAllContent($tableName);
+    /**
+     * Get content for a concrete page
+     * @param $id - content-card id
+     */
+    public function getContent($id, $userId);
 
-/**
- * Get content for a concrete page
- * @param $id - content-card id
- */
-public function getContent($id);
+    /**
+     * Add a new card in data
+     */
+    public static function addContent($categoryName, array $dataToAdd, $userId);
 
-/**
- * Add a new card in data
- */
-public function addContent();
+    /**
+     * Update a card data in database
+     */
+    public function updateContent($id, array $dataToUpdate, $userId);
 
-/**
- * Update a card data in database
- */
-public function updateContent($id, $validatetContent);
-
-/**
- * Set a card in database in status "disable"
- */
-public function deleteContent();
-
+    /**
+     * Set a card in database in status "disable"
+     */
+    public static function deleteContent($id);
 }

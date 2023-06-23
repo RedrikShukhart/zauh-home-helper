@@ -5,19 +5,15 @@
 
 @section('main-categories.content')
     <x-title-left>
-        {{ __('Редактирование: ') . $content->title }}
+        {{ $title . __('. Добавить новую запись ') }}
     </x-title-left>
     <div class="conteiner ms-2 pt-4">
-        <x-form action="{{ route('table-list.update', [$id]) }}" method="put" enctype="multipart/form-data">
-
-            <x-input type="hidden" name="id" value="{{ $content->id }}"></x-input>
-            {{-- потом поправить на оповещание "ошибка записи" --}}
-            <x-error name="id" />
-
+        <x-form action="{{ route('table-list.store', $tableName) }}" method="post" enctype="multipart/form-data">
+            <x-input type="hidden" name="route_name" value="{{ $tableName }}"></x-input>
             <x-form-item>
                 <x-label required>{{ $vars->title ?? '' }}</x-label>
                 <div class="col-sm-5">
-                    <x-input name="title" value="{{ $content->title ?? '' }}" required></x-input>
+                    <x-input name="title" value="{{ old('title') }}" required></x-input>
                     <x-error name="title" />
                 </div>
             </x-form-item>
@@ -25,7 +21,7 @@
             <x-form-item>
                 <x-label required>{{ $vars->description ?? '' }}</x-label>
                 <div class="col-sm-5">
-                    <x-input name="short_description" value="{{ $content->short_description ?? '' }}" required></x-input>
+                    <x-input name="short_description" value="{{ old('short_description') }}" required></x-input>
                     <x-error name="short_description" />
                 </div>
             </x-form-item>

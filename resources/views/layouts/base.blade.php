@@ -10,6 +10,7 @@
 
     <style>
         .kt_login { max-width: 720px; }
+        .kt_active { background-color: #6c757d; border-color:#141619 }
         .required:after { content: '*'; color: red; }
         /* .container { max-width: 1340px; } */
 

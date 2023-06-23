@@ -174,11 +174,63 @@ if (!function_exists('getUpdateData')) {
     }
 }
 
-// if (!function_exists('getCardContent')) {
+if (!function_exists('getCategoryIdOnRouteName')) {
+    /**
+     * Get category id on category's route name
+     * @param string $categoryName Route category name
+     * @return void|int id if route exists
+     */
+    function getCategoryIdOnRouteName($categoryName)
+    {
+        if (DB::table('zh_categories')->where('route_name', $categoryName)->exists()) {
+            return App\Models\Zh_categories::where('route_name', $categoryName)->first()->id;
+        }
+    }
+}
 
-//     function getCardContent($tableName)
-//     {
-//         $userId = 1;
+if (!function_exists('getCategoryNameOnRouteName')) {
+    /**
+     * Get category title-name on category's route name
+     * @param string $categoryName Route category name
+     * @return void|int id if route exists
+     */
+    function getCategoryNameOnRouteName($categoryName)
+    {
+        if (DB::table('zh_categories')->where('route_name', $categoryName)->exists()) {
+            return App\Models\Zh_categories::where('route_name', $categoryName)->first()->full_name;
+        }
+    }
+}
 
-//     }
-// }
+if (!function_exists('getViewsValuesOnCategoryId')) {
+    /**
+     * Get values for views on category's id
+     * @param string $categoryName Route category name
+     * @return void|mixed Values if route exists
+     */
+    function getViewsValuesOnCategoryId($categoryName)
+    {
+        //потом получать пользователя по авторизации, пока так
+        $userId = 1;
+
+        $vars = DB::table('zh_views_values_variants')
+            ->join('zh_views_values', 'zh_views_values.id', 'zh_views_values_variants.view_var_id')
+            ->join('zh_categories', 'zh_categories.id', 'zh_views_values_variants.view_category_id')
+            ->select('view_var',
+                        'var_variant'
+                        )
+            ->where('zh_views_values_variants.user_id', $userId)
+            ->where('zh_categories.route_name', $categoryName)
+            ->get();
+
+        $vars->toArray();
+
+        $result = [];
+        foreach ($vars as $var) {
+            $result[$var->view_var] = $var->var_variant;
+        }
+
+        return (object) $result;
+        
+    }
+}
