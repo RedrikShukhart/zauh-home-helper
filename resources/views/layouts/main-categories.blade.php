@@ -6,8 +6,10 @@
         @include('includes.menu-left')
 
         <div class="flex-grow-1">
-            @include('includes.breadcrumbs')
-            
+            @unless(Route::currentRouteName() === 'home' )
+                @include('includes.breadcrumbs')
+            @endunless
+
             @yield('main-categories.content')
         </div>
 

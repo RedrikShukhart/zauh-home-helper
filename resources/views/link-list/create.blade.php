@@ -7,9 +7,10 @@
     <x-title-left>
         {{ $title . __('. Добавить новую запись ') }}
     </x-title-left>
+
     <div class="conteiner ms-2 pt-4">
-        <x-form action="{{ route('table-list.store', $tableName) }}" method="post" enctype="multipart/form-data">
-            <x-input type="hidden" name="route_name" value="{{ $tableName }}"></x-input>
+        <x-form action="{{ route('link-list.store', $listName) }}" method="post" enctype="multipart/form-data">
+            <x-input type="hidden" name="route_name" value="{{ $listName }}"></x-input>
 
             <x-form-item>
                 <x-label required>{{ $vars->title ?? '' }}</x-label>
@@ -22,8 +23,10 @@
             <x-form-item>
                 <x-label required>{{ $vars->description ?? '' }}</x-label>
                 <div class="col-sm-5">
-                    <x-input name="short_description" value="{{ old('short_description') }}" required></x-input>
-                    <x-error name="short_description" />
+                    <x-textarea name="description" rows="10"  required>
+                        {{ old('description') }}
+                    </x-textarea>
+                    <x-error name="description" />
                 </div>
             </x-form-item>
 

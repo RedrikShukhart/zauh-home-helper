@@ -1,7 +1,9 @@
-<div class="d-flex justify-content-end">
-    <a class="btn btn-dark mt-3 " {{ $attributes->merge([
+@props(['size' => ''])
+
+<a {{ $attributes->class([
+    "btn btn-dark mt-3", ($size ? "btn-{$size}" : ''),
+])->merge([
     'href' => '#',
-    ]) }}>
-        {{ $slot }}
-    </a>
-</div>
+]) }}>
+    {{ $slot }}
+</a>

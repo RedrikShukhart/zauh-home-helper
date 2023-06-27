@@ -6,10 +6,11 @@ use App\Models\Zh_cards;
 use App\Zh_helpers\CardContent;
 use Illuminate\Support\Facades\DB;
 
-class TableContent implements CardContent
+class ListContent implements CardContent
 {
-    public function getAllContent($tableName, $userId)
+    public function getAllContent($listName, $userId)
     {
+        #code
         $limit = 5;
 
         $content = DB::table('zh_cards')
@@ -20,7 +21,7 @@ class TableContent implements CardContent
                      'title',
                      'short_description',
                      'description')
-            ->where('zh_categories.route_name', $tableName)
+            ->where('zh_categories.route_name', $listName)
             ->where('zh_cards.user_id', $userId)
             ->where('zh_cards.status', 'A')
             ->paginate($limit);
@@ -30,29 +31,32 @@ class TableContent implements CardContent
 
     /**
      * Get content for a concrete page
-     * @param $id Card Id need to get
+     * @param $id - content-card id
      */
     public function getContent($id, $userId)
     {
+        #code
         $content = Zh_cards::query()
-            ->where('user_id', $userId)
-            ->findOrFail($id,
-                [
-                    'id',
-                    'title',
-                    'short_description',
-                    'description',
-                ]);
-
-        return $content;
+        ->join('zh_categories', 'zh_cards.card_type_id', 'zh_categories.id')
+        ->where('zh_cards.user_id', $userId)
+        ->findOrFail($id,
+            [
+                'zh_cards.id',
+                'route_name',
+                'title',
+                'description',
+            ]);
+// dump($content);
+    return $content;
     }
 
     /**
      * Add a new card in data
      */
-    public static function addContent($tableName, array $dataToAdd, $userId)
+    public static function addContent($listName, array $dataToAdd, $userId)
     {
-        $id = getCategoryIdOnRouteName($tableName);
+        #code
+        $id = getCategoryIdOnRouteName($listName);
 
         if (empty($id)) {
             alert("Не удалось добавить запись", 'D');
@@ -61,30 +65,31 @@ class TableContent implements CardContent
                 'user_id' => $userId,
                 'card_type_id' => $id,
                 'title' => $dataToAdd['title'],
-                'short_description' => $dataToAdd['short_description']
+                'description' => $dataToAdd['description']
             ]);
 
             alert("Запись добавлена", 'S');
         }
     }
-    
+
     /**
      * Update a card data in database
      */
     public function updateContent($id, array $dataToUpdate, $userId)
     {
+        #code
         $affected = DB::table('zh_cards')
-              ->where('id', $id)
-              ->where('user_id', $userId)
-              ->update($dataToUpdate);
+        ->where('id', $id)
+        ->where('user_id', $userId)
+        ->update($dataToUpdate);
 
-        if ($affected !== 0) {
-            alert("Сохранено", 'S');
-        }
+    if ($affected !== 0) {
+        alert("Сохранено", 'S');
     }
-    
+    }
+
     /**
-     * Set a card in database in status 'D' - 'disable'
+     * Set a card in database in status "disable"
      */
     public static function deleteContent($id)
     {
@@ -92,5 +97,4 @@ class TableContent implements CardContent
             ->where('id', $id)
             ->update(['status'=>'D']);
     }
-
 }

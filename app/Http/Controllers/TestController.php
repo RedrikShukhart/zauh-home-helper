@@ -56,24 +56,27 @@ class TestController extends Controller
         //     'path_id' => '1',
         //     'level' => '0',
         //     'user_id' => '1',
+        //     'route_name' => 'gotovka',
         //     'short_name' => 'Готовка',
         //     'full_name' => 'Готовка',
         // ]);
         //следующий раздел самого верхнего уровня
-            // Zh_categories::query()->create([
-            //     'parent_id' => 0,
-            //     'path_id' => '2',
-            //     'level' => '0',
-            //     'user_id' => '1',
-            //     'short_name' => 'Размеры',
-            //     'full_name' => 'Размеры',
-            // ]);
+        //     Zh_categories::query()->create([
+        //         'parent_id' => 0,
+        //         'path_id' => '2',
+        //         'level' => '0',
+        //         'user_id' => '1',
+        //         'route_name' => 'razmery',
+        //         'short_name' => 'Размеры',
+        //         'full_name' => 'Размеры',
+        //     ]);
 
         // Zh_categories::query()->create([
         //     'parent_id' => 1,
         //     'path_id' => '1/3',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'recepty',
         //     'short_name' => 'Рецепты',
         //     'full_name' => 'Все рецепты',
         // ]);
@@ -82,6 +85,7 @@ class TestController extends Controller
         //     'path_id' => '1/4',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'gotovka-nuansy',
         //     'short_name' => 'Нюансы приготовления',
         //     'full_name' => 'Нюансы приготовления',
         // ]);
@@ -91,6 +95,7 @@ class TestController extends Controller
         //     'path_id' => '1/5',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'vkusno',
         //     'short_name' => 'Вкусные товары',
         //     'full_name' => 'Понравившиеся товары и продукты',
         // ]);
@@ -99,6 +104,7 @@ class TestController extends Controller
         //     'path_id' => '1/6',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'ne-vkusno',
         //     'short_name' => 'Не вкусные товары',
         //     'full_name' => 'Не понравившиеся товары и продукты',
         // ]);
@@ -108,6 +114,7 @@ class TestController extends Controller
         //     'path_id' => '1/4/7',
         //     'level' => '2',
         //     'user_id' => '1',
+        //     'route_name' => 'cook-time',
         //     'short_name' => 'Время готовки',
         //     'full_name' => 'Время готовки',
         // ]);
@@ -116,6 +123,7 @@ class TestController extends Controller
         //     'path_id' => '1/4/8',
         //     'level' => '2',
         //     'user_id' => '1',
+        //     'route_name' => 'proporcii',
         //     'short_name' => 'Пропорции',
         //     'full_name' => 'Пропорции',
         // ]);
@@ -124,6 +132,7 @@ class TestController extends Controller
         //     'path_id' => '1/4/9',
         //     'level' => '2',
         //     'user_id' => '1',
+        //     'route_name' => 'opisanie-processov',
         //     'short_name' => 'Описание процессов',
         //     'full_name' => 'Описание процессов',
         // ]);
@@ -134,6 +143,7 @@ class TestController extends Controller
         //     'path_id' => '2/10',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'gabarity-zauh',
         //     'short_name' => 'Габариты Заюх',
         //     'full_name' => 'Габариты Заюх',
         // ]);
@@ -142,6 +152,7 @@ class TestController extends Controller
         //     'path_id' => '2/11',
         //     'level' => '1',
         //     'user_id' => '1',
+        //     'route_name' => 'gabarity-zauhovna',
         //     'short_name' => 'Габариты Заюховна',
         //     'full_name' => 'Габариты Заюховна',
         // ]);
@@ -192,37 +203,37 @@ class TestController extends Controller
         //     'user_id' => 1,
         //     'card_type_id' => 7,
         //     'title' => 'Сибас в духовке в фольге',
-        //     'description' => '25 минут',
+        //     'short_description' => '25 минут',
         //     ]);
 
         // Zh_cards::query()->create([
         //     'user_id' => 1,
         //     'card_type_id' => 7,
         //     'title' => 'Вареники с картошкой',
-        //     'description' => '7 минут',
+        //     'short_description' => '7 минут',
         //     ]);
         // Zh_cards::query()->create([
         //     'user_id' => 1,
         //     'card_type_id' => 7,
         //     'title' => 'Хинкали',
-        //     'description' => '11 минут',
+        //     'short_description' => '11 минут',
         //     ]);
         // Zh_cards::query()->create([
         //     'user_id' => 1,
         //     'card_type_id' => 7,
         //     'title' => 'Яйца в мешочек',
-        //     'description' => '5 минут',
+        //     'short_description' => '5 минут',
         //     ]);
         // Zh_cards::query()->create([
         //     'user_id' => 1,
         //     'card_type_id' => 7,
         //     'title' => 'Курица с сулугуни в духовке',
-        //     'description' => '15 минут',
+        //     'short_description' => '15 минут',
         //     ]);
 
         echo 'ok';
 
-// заполнение типов вью BEGIN
+// заполнение vars вью BEGIN
         // Zh_views_values::query()->create([
         //     'view_id' => 4,
         //     'view_var' => 'title',
@@ -253,17 +264,22 @@ class TestController extends Controller
         //     'view_var' => 'description',
         // ]);
 
-// заполнение типов вью END
+
+
+
+// заполнение vars вью END
 
         // Zh_views_values_variants::query()->create([
         //     'user_id' => 1,
         //     'view_var_id' => 1,
+        //     'view_category_id' => 7,
         //     'var_variant' => 'наименование продукта',
         // ]);
 
         // Zh_views_values_variants::query()->create([
         //         'user_id' => 1,
         //         'view_var_id' => 1,
+        //         'view_category_id' => 7,
         //         'var_variant' => 'время приготовления',
         //     ]);
 
@@ -309,6 +325,49 @@ class TestController extends Controller
         //         'var_variant' => 'Габариты - Размеры',
         // ]);
 
-        // return 'test';
+
+        // Zh_cards::query()->create([
+        //     'user_id' => 1,
+        //     'card_type_id' => 9,
+        //     'title' => 'Запеченая свинина',
+        //     'description' => 'На запекание свинины в духовке хорошо подходят окорок и лопатка
+        //     Сухой чеснок
+        //     Гвоздика
+        //     Мускатный орех
+        //     Кореандр молотый
+        //     Сухая аджика 
+        //     Если делать именно буженину, то есть сформировать кусочек перевязав джутом слегка добавляем масла подсолнечного, чтобы специи прилипли
+        //     Соли, черного перца и даем помариноваться
+        //     Кладем и заворачиваем в «конвертик» из бумаги, но оставляем так, чтобы лишняя влага выходила. В духовку 180 градусов. На небольшой кусочек 30-40 минут так готовим, потом открыть надо будет мясо. В общей сложности примерно 1,5-2 часа готовить
+        //     Чеснок в пасту превратив и с маслом сливочным растопленным перемешав намазываем на свинину. Заворачиваем в пленку и кладем в холодильник остывать полностью',
+        //     ]);
+
+
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 3,
+        //     'view_var' => 'title',
+        // ]);
+
+        // Zh_views_values::query()->create([
+        //     'view_id' => 3,
+        //     'view_var' => 'description',
+        // ]);
+
+
+        // Zh_views_values_variants::query()->create([
+        //     'user_id' => 1,
+        //     'view_var_id' => 7,
+        //     'view_category_id' => 9,
+        //     'var_variant' => 'Название',
+        // ]);
+
+        // Zh_views_values_variants::query()->create([
+        //         'user_id' => 1,
+        //         'view_var_id' => 8,
+        //         'view_category_id' => 9,
+        //         'var_variant' => 'Описание процесса',
+        //     ]);
+
     }
 }

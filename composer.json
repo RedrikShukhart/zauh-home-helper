@@ -32,7 +32,8 @@
         "files": [
             "app/Helpers/kt_helpers.php",
             "app/Helpers/CardContent.php",
-            "app/Helpers/TableContent.php"
+            "app/Helpers/TableContent.php",
+            "app/Helpers/ListContent.php"
         ]
     },
     "autoload-dev": {

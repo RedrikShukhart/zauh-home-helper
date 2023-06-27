@@ -9,12 +9,15 @@
         {{ $title }}
     </x-title>
 
-    <x-button-link href="{{ route('table-list.create', $tableName) }}">
-        {{ __('Добавить') }}
-    </x-button-link>
+    <div class="d-flex justify-content-end">
+        <x-button-link href="{{ route('table-list.create', $tableName) }}">
+            {{ __('Добавить') }}
+        </x-button-link>
+    </div>
 
-    <x-lists.table-list :vars="$vars" :content="$content" />
-
-    {{ $content->links() }}
+    @if(!empty($content))
+        <x-lists.table-list :vars="$vars" :content="$content" />
+        {{ $content->links() }}
+    @endif
 </div>
 @endsection

@@ -24,7 +24,7 @@
                   <button style="background: none; border: none;" class="bi bi-trash3 text-muted"  type="submit"></button> 
                 </form>
               </i>
-              <i>{{-- редактировать элемент 'time-cook' --}}
+              <i>{{-- редактировать элемент --}}
                 <a class="bi bi-pencil-square text-muted" href="{{ route('table-list.edit', [$item->route_name, $item->id] ) }}"></a>
               </i>
             </div>
