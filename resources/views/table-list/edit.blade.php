@@ -1,9 +1,12 @@
 @extends('layouts.main-categories')
 
-@section('page.title', config('app.name') . '. ' . $title)
+@section('page.title', config('app.name') . '. ' . $title . '. ' . $content->title)
 
 
 @section('main-categories.content')
+    @if(!empty($parents))
+        {{ Breadcrumbs::render('card', 'table-list', $content->title, $parents) }}
+    @endif
     <x-title-left>
         {{ __('Редактирование: ') . $content->title }}
     </x-title-left>
@@ -35,5 +38,5 @@
             </x-button>
         </x-form>
     </div>
-    
+
 @endsection

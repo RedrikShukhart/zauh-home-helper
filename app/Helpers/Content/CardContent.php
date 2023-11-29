@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Zh_helpers;
+namespace App\Zh_helpers\Content;
 
 use Illuminate\Support\Facades\DB;
 

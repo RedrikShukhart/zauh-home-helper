@@ -3,6 +3,7 @@
 @section('page.title', config('app.name') . '. Profile')
 
 @section('main-settings.content')
+{{-- {{ Breadcrumbs::render('profile') }} --}}
     <div class="container mx-4">
         <x-title-left>
             {{ __('Profile page')}}

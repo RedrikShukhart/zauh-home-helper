@@ -5,7 +5,7 @@
     <div class="position-sticky pt-3 sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link link-dark d-inline-flex text-decoration-none rounded {{ activeLink('profile/1') }}" aria-current="page" 
+          <a class="nav-link link-dark d-inline-flex text-decoration-none rounded {{ activeLink('profile') }}" aria-current="page" 
           href="{{ route('profile', ['id' => 1]) }}">
             <span data-feather="home" class="align-text-bottom"></span>
             {{ __('Profile') }}

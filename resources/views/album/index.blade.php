@@ -37,7 +37,5 @@
         </div>
     </div>
 
-    <x-pagination>
         <!-- сюда будем передавать количество страниц для пагинации -->
-    </x-pagination>
 @endsection

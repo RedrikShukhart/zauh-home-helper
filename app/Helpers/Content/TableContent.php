@@ -3,7 +3,8 @@
 namespace App\Zh_helpers\TableContent;
 
 use App\Models\Zh_cards;
-use App\Zh_helpers\CardContent;
+use App\Models\Zh_categories;
+use App\Zh_helpers\Content\CardContent;
 use Illuminate\Support\Facades\DB;
 
 class TableContent implements CardContent
@@ -52,7 +53,7 @@ class TableContent implements CardContent
      */
     public static function addContent($tableName, array $dataToAdd, $userId)
     {
-        $id = getCategoryIdOnRouteName($tableName);
+        $id = Zh_categories::getCategoryIdOnRouteName($tableName);
 
         if (empty($id)) {
             alert("Не удалось добавить запись", 'D');
@@ -67,7 +68,7 @@ class TableContent implements CardContent
             alert("Запись добавлена", 'S');
         }
     }
-    
+
     /**
      * Update a card data in database
      */
@@ -82,7 +83,7 @@ class TableContent implements CardContent
             alert("Сохранено", 'S');
         }
     }
-    
+
     /**
      * Set a card in database in status 'D' - 'disable'
      */

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
@@ -30,10 +31,12 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/kt_helpers.php",
-            "app/Helpers/CardContent.php",
-            "app/Helpers/TableContent.php",
-            "app/Helpers/ListContent.php"
+            "app/Helpers/Common/kt_helpers.php",
+            "app/Helpers/Content/CardContent.php",
+            "app/Helpers/Content/TableContent.php",
+            "app/Helpers/Content/ListContent.php",
+            "app/Helpers/Categories/Categories.php",
+            "app/Helpers/Categories/helpers_category.php"
         ]
     },
     "autoload-dev": {

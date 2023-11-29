@@ -2,15 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CadrController;
-use App\Http\Controllers\ListController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\HomeParentCategoriesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LinkListController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TableListController;
 use App\Http\Controllers\User\ProfileController;
-use SebastianBergmann\LinesOfCode\LineCountingVisitor;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +32,8 @@ Route::get('test', TestController::class);
 Route::view('/', 'index.index')->name('index');
 
 Route::view('home', 'home.index')->name('home');
+Route::get('home/{mainCategory}', [HomeParentCategoriesController::class, 'index'])->name('home.main-category');
+//Route::get('home/{mainCategory}/{parent?}/{child?}', [HomeParentCategoriesController::class, 'index'])->name('home.main-category');
 
 // Страница регистрации в сервисе, сделать доступ по ссылке
 Route::get('register', [RegisterController::class, 'index'])->name('register');
@@ -78,7 +79,7 @@ Route::delete('table/{id}', [TableListController::class, 'delete'])->name('table
 Route::get('list/{listName}', [LinkListController::class, 'index'])->name('link-list');
 Route::get('list/{listName}/create', [LinkListController::class, 'create'])->name('linklist.create');
 Route::post('list/{listName}', [LinkListController::class, 'store'])->name('link-list.store');
-Route::get('list/{listName}/{id}', [LinkListController::class, 'show'])->name('link-list.show');
+Route::get('list/{listName}/{id}', [LinkListController::class, 'show'])->name('link-list.show')->whereNumber('id');
 Route::get('list/{listName}/{id}/edit', [LinkListController::class, 'edit'])->name('link-list.edit');
 Route::put('list/{id}', [LinkListController::class, 'update'])->name('link-list.update')->whereNumber('id');
 Route::delete('list/{listName}/{id}/delete', [LinkListController::class, 'delete'])->name('link-list.delete')->whereNumber('id');

@@ -1,9 +1,10 @@
 @extends('layouts.main-categories')
 
-@section('page.title', config('app.name') . '. ' . $content->title)
+@section('page.title', config('app.name') . '. ' . $title . '. ' . $content->title)
 
 @section('main-categories.content')
     <div class="container">
+        {{ Breadcrumbs::render('card', 'link-list', $content->title, $parents) }}
 
         <div class="ms-3">
             <x-title-left>

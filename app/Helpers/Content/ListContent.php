@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Zh_helpers\TableContent;
+namespace App\Zh_helpers\ListContent;
 
 use App\Models\Zh_cards;
-use App\Zh_helpers\CardContent;
+use App\Models\Zh_categories;
+use App\Zh_helpers\Content\CardContent;
 use Illuminate\Support\Facades\DB;
 
 class ListContent implements CardContent
@@ -46,7 +47,7 @@ class ListContent implements CardContent
                 'title',
                 'description',
             ]);
-// dump($content);
+
     return $content;
     }
 
@@ -56,7 +57,7 @@ class ListContent implements CardContent
     public static function addContent($listName, array $dataToAdd, $userId)
     {
         #code
-        $id = getCategoryIdOnRouteName($listName);
+        $id = Zh_categories::getCategoryIdOnRouteName($listName);
 
         if (empty($id)) {
             alert("Не удалось добавить запись", 'D');

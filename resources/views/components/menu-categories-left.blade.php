@@ -1,5 +1,5 @@
 @php
-function printTree($categories, $btn_size = '', $collapse = 'col', $rootLevel = 0)
+function printTree($categories, $btn_size = '', $collapse = 'col')
 {
     foreach ($categories as $cat) {
         @endphp
@@ -20,7 +20,7 @@ function printTree($categories, $btn_size = '', $collapse = 'col', $rootLevel = 
                     <div class="collapse" id="{{ $collapse }}-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             @php 
-                                printTree($cat->child, 'btn-sm', $collapse, $cat->id) 
+                                printTree($cat->child, 'btn-sm', $collapse) 
                             @endphp
                         </ul>
                     </div>

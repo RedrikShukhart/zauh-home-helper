@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Zh_categories;
+use App\Zh_helpers\Categories\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Zh_helpers\TableContent\TableContent;
@@ -13,21 +15,21 @@ class TableListController extends Controller
 
     public function index($tableName)
     {
-        $vars = getViewsValuesOnCategoryId($tableName);
-        //по переменной tableName узнаем, какую именно категорию мы получили и что надо показать
+        $parents = Zh_categories::getParentsForChildCategory($tableName);
 
-        $title = getCategoryNameOnRouteName($tableName);
-  
+        $vars = Categories::getViewsValuesOnCategoryId($tableName);
+        $title = Zh_categories::getCategoryNameOnRouteName($tableName);
+
         $table = new TableContent();
         $content = $table->getAllContent($tableName, $this->userId);
 
-        return view('table-list.index', compact('content', 'tableName', 'title', 'vars'));
+        return view('table-list.index', compact('content', 'tableName', 'title', 'vars'))->with('parents', $parents);
     }
-    
+
     public function create($tableName)
     {
-        $title = getCategoryNameOnRouteName($tableName);
-        $vars = getViewsValuesOnCategoryId($tableName);
+        $title = Zh_categories::getCategoryNameOnRouteName($tableName);
+        $vars = Categories::getViewsValuesOnCategoryId($tableName);
 
         return view('table-list.create', compact('tableName', 'title', 'vars'));
     }
@@ -36,7 +38,7 @@ class TableListController extends Controller
     {
         $validatedContent = $request->validate([
             'title' => ['required', 'string', 'max:128'],
-            'short_description' => ['required', 'string']            
+            'short_description' => ['required', 'string']
         ]);
 
         TableContent::addContent($tableName, $validatedContent, $this->userId);
@@ -46,13 +48,14 @@ class TableListController extends Controller
 
     public function edit($tableName, $id)
     {
-        $title = getCategoryNameOnRouteName($tableName);
-        $vars = getViewsValuesOnCategoryId($tableName);
+        $parents = Zh_categories::getParentsForCard($tableName);
+        $title = Zh_categories::getCategoryNameOnRouteName($tableName);
+        $vars = Categories::getViewsValuesOnCategoryId($tableName);
 
         $table = new TableContent();
         $content = $table->getContent($id, $this->userId);
 
-        return view('table-list.edit', compact('title', 'vars', 'content', 'id'));
+        return view('table-list.edit', compact('title', 'vars', 'content', 'id'))->with('parents', $parents);
     }
 
     public function update(Request $request,  $id)
@@ -60,7 +63,7 @@ class TableListController extends Controller
         $validatedContent = $request->validate([
             'title' => ['required', 'string', 'max:128'],
             'id' => ['required', Rule::exists('zh_cards', 'id')],
-            'short_description' => ['required', 'string']            
+            'short_description' => ['required', 'string']
         ]);
 
         $dataToUpdate = getUpdateData($validatedContent);
