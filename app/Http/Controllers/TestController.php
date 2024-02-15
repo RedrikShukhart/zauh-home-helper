@@ -23,9 +23,9 @@ class TestController extends Controller
         //         'content' => fake()->paragraph(),
         //         'published' => true,
         //         'published_at' => fake()->dateTimeBetween(now()->subYear(), now()),
-        //     ]);  
+        //     ]);
         // }
-        
+
 // заполнение типов вью BEGIN
         // Zh_views::query()->create([
         //     'view_name' => 'альбом',
@@ -303,7 +303,7 @@ class TestController extends Controller
         //         'view_category_id' => 10,
         //         'var_variant' => 'Наименование',
         // ]);
-    
+
         // Zh_views_values_variants::query()->create([
         //         'user_id' => 1,
         //         'view_var_id' => 2,
@@ -335,7 +335,7 @@ class TestController extends Controller
         //     Гвоздика
         //     Мускатный орех
         //     Кореандр молотый
-        //     Сухая аджика 
+        //     Сухая аджика
         //     Если делать именно буженину, то есть сформировать кусочек перевязав джутом слегка добавляем масла подсолнечного, чтобы специи прилипли
         //     Соли, черного перца и даем помариноваться
         //     Кладем и заворачиваем в «конвертик» из бумаги, но оставляем так, чтобы лишняя влага выходила. В духовку 180 градусов. На небольшой кусочек 30-40 минут так готовим, потом открыть надо будет мясо. В общей сложности примерно 1,5-2 часа готовить
@@ -368,6 +368,31 @@ class TestController extends Controller
         //         'view_category_id' => 9,
         //         'var_variant' => 'Описание процесса',
         //     ]);
+
+
+//         Zh_views_values::query()->create([
+//             'view_id' => 1,
+//             'view_var' => 'title',
+//         ]);
+//
+//         Zh_views_values::query()->create([
+//             'view_id' => 1,
+//             'view_var' => 'description',
+//         ]);
+
+//         Zh_views_values_variants::query()->create([
+//             'user_id' => 1,
+//             'view_var_id' => 9,
+//             'view_category_id' => 6,
+//             'var_variant' => 'Название',
+//         ]);
+//
+//         Zh_views_values_variants::query()->create([
+//                 'user_id' => 1,
+//                 'view_var_id' => 10,
+//                 'view_category_id' => 6,
+//                 'var_variant' => 'Комментарий к фото',
+//             ]);
 
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Zh_helpers\ListContent;
+namespace App\Zh_helpers\Content\ListContent;
 
+use App\Zh_helpers\Content\CardContent;
 use App\Models\Zh_cards;
 use App\Models\Zh_categories;
-use App\Zh_helpers\Content\CardContent;
 use Illuminate\Support\Facades\DB;
 
 class ListContent implements CardContent

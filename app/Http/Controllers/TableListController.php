@@ -6,7 +6,7 @@ use App\Models\Zh_categories;
 use App\Zh_helpers\Categories\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Zh_helpers\TableContent\TableContent;
+use App\Zh_helpers\Content\TableContent\TableContent;
 
 class TableListController extends Controller
 {
@@ -16,7 +16,6 @@ class TableListController extends Controller
     public function index($tableName)
     {
         $parents = Zh_categories::getParentsForChildCategory($tableName);
-
         $vars = Categories::getViewsValuesOnCategoryId($tableName);
         $title = Zh_categories::getCategoryNameOnRouteName($tableName);
 
@@ -28,10 +27,11 @@ class TableListController extends Controller
 
     public function create($tableName)
     {
+        $parents = Zh_categories::getParentsForCard($tableName);
         $title = Zh_categories::getCategoryNameOnRouteName($tableName);
         $vars = Categories::getViewsValuesOnCategoryId($tableName);
 
-        return view('table-list.create', compact('tableName', 'title', 'vars'));
+        return view('table-list.create', compact('tableName', 'title', 'vars'))->with('parents', $parents);
     }
 
     public function store($tableName, Request $request)

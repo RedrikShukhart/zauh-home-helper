@@ -6,7 +6,7 @@ use App\Models\Zh_categories;
 use App\Zh_helpers\Categories\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Zh_helpers\ListContent\ListContent;
+use App\Zh_helpers\Content\ListContent\ListContent;
 
 
 class LinkListController extends Controller
@@ -27,10 +27,11 @@ class LinkListController extends Controller
 
     public function create($listName)
     {
+        $parents = Zh_categories::getParentsForCard($listName);
         $vars = Categories::getViewsValuesOnCategoryId($listName);
         $title = Zh_categories::getCategoryNameOnRouteName($listName);
 
-        return view('link-list.create', compact('listName', 'title', 'vars'));
+        return view('link-list.create', compact('listName', 'title', 'vars'))->with('parents', $parents);
     }
 
     public function store($listName, Request $request)

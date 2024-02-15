@@ -4,6 +4,9 @@
 
 
 @section('main-categories.content')
+    @if(!empty($parents))
+        {{ Breadcrumbs::render('card-new', 'link-list', __('Добавление новой записи'), $parents) }}
+    @endif
     <x-title-left>
         {{ $title . __('. Добавить новую запись ') }}
     </x-title-left>
@@ -35,5 +38,5 @@
             </x-button>
         </x-form>
     </div>
-    
+
 @endsection

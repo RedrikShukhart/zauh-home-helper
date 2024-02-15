@@ -62,10 +62,6 @@ Route::put('cards/{card}/{id}', [CadrController::class, 'update'])->name('cards.
 Route::delete('cards/{card}/{id}', [CadrController::class, 'delete'])->name('cards.delete');
 
 
-//Страницы связанные с показом шаблона альбом
-Route::get('album/{albumName}', [AlbumController::class, 'index'])->name('album');
-
-
 //Страницы связанные с показом шаблона список-таблица
 Route::get('table/{tableName}', [TableListController::class, 'index'])->name('table-list');
 Route::get('table/{tableName}/create', [TableListController::class, 'create'])->name('table-list.create');
@@ -84,3 +80,10 @@ Route::get('list/{listName}/{id}/edit', [LinkListController::class, 'edit'])->na
 Route::put('list/{id}', [LinkListController::class, 'update'])->name('link-list.update')->whereNumber('id');
 Route::delete('list/{listName}/{id}/delete', [LinkListController::class, 'delete'])->name('link-list.delete')->whereNumber('id');
 
+//Страницы связанные с показом шаблона альбом, что еще добавить?...редактирование, добавление, удаление
+Route::get('album/{albumName}', [AlbumController::class, 'index'])->name('album');
+Route::get('album/{albumName}/create', [AlbumController::class, 'create'])->name('album.create');
+Route::post('album/{albumName}', [AlbumController::class, 'store'])->name('album.store');
+Route::get('album/{albumName}/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');
+Route::put('album/{albumName}/{id}', [AlbumController::class, 'update'])->name('album.update')->whereNumber('id');
+Route::delete('album/{id}', [AlbumController::class, 'delete'])->name('album.delete')->whereNumber('id');

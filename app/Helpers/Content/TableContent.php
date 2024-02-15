@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Zh_helpers\TableContent;
+namespace App\Zh_helpers\Content\TableContent;
 
+use App\Zh_helpers\Content\CardContent;
 use App\Models\Zh_cards;
 use App\Models\Zh_categories;
-use App\Zh_helpers\Content\CardContent;
 use Illuminate\Support\Facades\DB;
 
 class TableContent implements CardContent

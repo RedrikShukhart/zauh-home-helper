@@ -1,9 +1,22 @@
 @extends('layouts.main-categories')
 
+@section('page.title', config('app.name') . '. ' . $title)
+
 @section('main-categories.content')
+    @if(!empty($parents))
+        {{ Breadcrumbs::render('child-category', 'album', $title, $parents) }}
+    @endif
+
     <x-title>
-        {{ __('Album page')}}
+        {{ $title }}
     </x-title>
+
+{{--    <div class="d-flex justify-content-end">--}}
+        <x-button-link href="{{ route('album.create', $albumName) }}">
+            {{ __('Добавить') }}
+        </x-button-link>
+{{--    </div>--}}
+
     <section class="text-center container border">
         <div class="row py-lg-2">
             <div class="col-lg-6 col-md-8 mx-auto">
@@ -11,7 +24,7 @@
             </div>
         </div>
     </section>
-  
+
     <div class="album py-5 bg-body-tertiary ">
         <div class="container-xxl border">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">

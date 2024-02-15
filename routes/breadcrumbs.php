@@ -65,6 +65,16 @@ Breadcrumbs::for('card', function (BreadcrumbTrail $trail, $route, $CardName, $p
     $trail->push($CardName, route($route, $CardName));
 });
 
+// Home > Parent category > category for table-list and link-list create new card +
+Breadcrumbs::for('card-new', function (BreadcrumbTrail $trail, $route, $CardName, $parents) {
+    $trail->parent('home');
+    foreach ($parents['grand_parents'] as $parent) {
+        $trail->parent('parent-category', $parent);
+    }
+    $trail->push($parents['parent']->full_name, route($route, $parents['parent']->route_name));
+    $trail->push($CardName);
+});
+
 
 // Home > Blog > [Category]
 // Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
